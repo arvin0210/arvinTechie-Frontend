@@ -1,0 +1,20 @@
+<h3 mat-dialog-title>Add new card in <strong>{{this.data.text}}</strong> column</h3>
+<form [formGroup]="_newCardForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content>
+        <div class="form-group">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Card Title</mat-label>
+                        <input matInput formControlName="cardTitle">
+                        <mat-error ngx-mat-errors></mat-error>
+                      </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button cdkFocusInitial color="primary">Confirm</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+</form>

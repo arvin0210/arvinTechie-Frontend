@@ -1,0 +1,31 @@
+.login-card {
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+
+    mat-icon {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.icon-display {
+    transform: scale(3);
+    background: -webkit-linear-gradient(#00edfd 15%, #0036fa 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+ }
+
+ .loginformClass {
+     text-align: center;
+     padding-top: 15px;
+     padding-bottom: 10px;
+ }
+
+ progress {
+    direction: rtl;
+  }

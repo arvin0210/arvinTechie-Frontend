@@ -1,0 +1,92 @@
+<!-- <app-header></app-header>
+<router-outlet></router-outlet>
+<app-footer></app-footer> -->
+
+<app-header [sidenav]="sidenav"></app-header>
+
+<mat-sidenav-container>
+  <!-- template reference variable 'sidenav'-->
+  <mat-sidenav #sidenav="matSidenav" [ngClass]="{'AuthON': isAuth, 'AuthOFF': !isAuth }">
+
+    <img *ngIf="!isAuth" class="avatar mat-elevation-z8" src="../assets/resumePic.PNG">
+    <h1 *ngIf="isAuth">
+      <mat-icon class="icon-display mt-3">account_circle</mat-icon>
+    </h1>
+    <h4 class="name">
+      <span *ngIf="!isAuth">Arvin Pillaai</span>
+      <span *ngIf="isAuth">{{userAccount.firstName}}, {{userAccount.lastName}}</span>
+    </h4>
+    <p class="designation">
+      <span *ngIf="!isAuth">Software Engineer</span>
+      <span *ngIf="isAuth">{{userAccount.role.roleName}}</span>
+    </p>
+    <mat-divider></mat-divider>
+
+    <div *ngIf="!isAuth">
+      <button mat-button class="menu-button" [routerLink]="['/']" (click)="sidenav.mode === 'side' || sidenav.close()">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
+      <button mat-button class="menu-button" [routerLink]="['/profile']"
+        (click)="sidenav.mode === 'side' || sidenav.close()">
+        <mat-icon>person</mat-icon>
+        <span>Profile</span>
+      </button>
+
+      <button mat-button class="menu-button" [matMenuTriggerFor]="cstudy">
+        <mat-icon>business_center</mat-icon>
+        <span>Case Studies</span>
+      </button>
+      <mat-menu #cstudy="matMenu" xPosition="before">
+        <button mat-menu-item [routerLink]="['/cs-todoTable']"
+          (click)="sidenav.mode === 'side' || sidenav.close()"><span>Task List</span></button>
+        <button mat-menu-item [routerLink]="['/cs-kanban/', 1]"
+          (click)="sidenav.mode === 'side' || sidenav.close()"><span>Kanban</span></button>
+      </mat-menu>
+    </div>
+    <div *ngIf="isAuth">
+      <button mat-button class="menu-button" [routerLink]="['/work-teamHome']"
+        (click)="sidenav.mode === 'side' || sidenav.close()">
+        <mat-icon>people_alt</mat-icon>
+        <span>Team</span>
+      </button>
+      <button mat-button class="menu-button" [routerLink]="['/work-project']"
+        (click)="sidenav.mode === 'side' || sidenav.close()">
+        <mat-icon>timeline</mat-icon>
+        <span>Projects</span>
+      </button>
+      <button mat-button class="menu-button" [routerLink]="['/work-taskList']"
+        (click)="sidenav.mode === 'side' || sidenav.close()">
+        <mat-icon>checklist</mat-icon>
+        <span>Task List</span>
+      </button>
+      <button mat-button class="menu-button" [matMenuTriggerFor]="kanban">
+        <mat-icon>leaderboard</mat-icon>
+        <span>Kanban</span>
+      </button>
+      <mat-menu #kanban="matMenu" xPosition="before">
+        <button mat-menu-item *ngFor="let item of projectService._projects$ | async" [routerLink]="['/work-kanban/', item.id]"
+          (click)="sidenav.mode === 'side' || sidenav.close()"><span>{{item.name}}</span></button>
+      </mat-menu>
+    </div>
+
+
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" (click)="demoLogin()">
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+
+
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content">
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

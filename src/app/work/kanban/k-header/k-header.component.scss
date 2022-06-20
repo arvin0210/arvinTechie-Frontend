@@ -1,0 +1,19 @@
+mat-toolbar {
+  background-color: #4b0082;
+  border-radius: 5px;
+  color: white;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.seperatorColor {
+  color: rgb(96, 85, 118);
+}
+
+.headerSmall {
+  padding-left: 10px;
+  font-size: small;
+  font-weight: lighter;
+}

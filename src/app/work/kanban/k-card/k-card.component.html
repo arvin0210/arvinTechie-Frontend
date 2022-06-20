@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-between align-items-start mb-2">
+    <div class="mt-1">{{ card.text }} </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <div class="d-flex justify-content-start align-items-start mb-2">
+            <!-- <button mat-icon-button  (click)="onCardEdit(card.id)">
+                <mat-icon class="icon" >edit</mat-icon>
+            </button> -->
+            <!-- style="padding-left: 15%;"  -->
+            <button mat-icon-button (click)="onCardDelete(card.id)">
+                <mat-icon class="icon">delete</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="d-flex justify-content-end align-items-center mb-2">
+            <button mat-icon-button disableRipple class="ml-2" (click)="onOpenComment()">
+                <mat-icon class="icon">chat_bubble_outline</mat-icon>
+            </button>
+            <span>{{ card.comments?.length }}</span>
+        
+            <button mat-icon-button disableRipple class="ml-2" (click)="onCardSchedule(card.id)">
+                <mat-icon class="icon">schedule</mat-icon>
+            </button>
+            <span>{{card.progress}} <small>%</small></span>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="open">
+    <mat-form-field class="w-100 mb-2">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput [(ngModel)]="commentInput" (mousedown)="$event.stopPropagation()"></textarea>
+        <button mat-button *ngIf="commentInput" matSuffix mat-icon-button color="primary" class="icon-confirm"
+            (click)="onCommentTextEmit(card.id)">
+            <mat-icon>done</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <ng-content></ng-content>
+</div>

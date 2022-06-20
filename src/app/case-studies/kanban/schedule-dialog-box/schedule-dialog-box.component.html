@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>Progress Update</h2>
+<h4>Card : {{ this.cardTitle }}</h4>
+
+<form [formGroup]="_ScheduleForm" (ngSubmit)="onSubmit()">
+    <div mat-dialog-content>
+        <div class="form-group mb-3">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Progress Comment</mat-label>
+                        <input matInput formControlName="progressComment">
+                        <mat-error ngx-mat-errors></mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Progress Update</mat-label>
+                        <input matInput formControlName="progress">
+                        <span matSuffix>%</span>
+                        <mat-error ngx-mat-errors>
+                            <span *ngxMatErrorDef="let error; for: 'pattern'">
+                                Only digits are allowed
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+                    <p class="mt-2"><small>Current Progress: {{ this.currentProgress }} %</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button cdkFocusInitial color="primary">Confirm</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+</form>

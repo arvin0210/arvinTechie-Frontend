@@ -1,0 +1,77 @@
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title fw-bold">Task List</h3>
+                <p class="card-text">
+                    A Todo-Table which holds a list of tasks that needs to be completed.
+                    Case study is to use API calls to backend to perform CURD
+                    operations to manupliate data in table.
+                </p>
+                <p class="card-text fst-italic text-muted">
+                    - to retrieve, update, insert and delete rows of data.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3"></div>
+<div class="container">
+    <div class="row mat-elevation-z8">
+        
+        <mat-toolbar class="toolbar">
+            <span>Task List</span>
+            
+            <span class="toolbar-spacer"></span>
+            <button mat-icon-button (click)="addTodo()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-toolbar>        
+
+        <table mat-table [dataSource]="todoDataSource" matSort (matSortChange)="announceSortChange($event)">
+
+            <tr mat-header-row *matHeaderRowDef="todoDisplayedColumns"></tr>
+            <tr mat-row [ngClass]="{highlight: row.highlighted}" *matRowDef="let row; columns: todoDisplayedColumns;">
+            </tr>
+
+            <ng-container matColumnDef="Description">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by description">
+                    Description</th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="targetDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by target Date">Target
+                    Date</th>
+                <td mat-cell *matCellDef="let element"> {{element.targetDate | date}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="done">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by completion">
+                    Done?</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-icon *ngIf="element.completed" class="thumb-Up">
+                        <span>thumb_up_off_alt</span>
+                    </mat-icon>
+                    <span *ngIf="!element.completed">No</span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button (click)="editTodo(element.id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteTodo(element.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of todo list">
+        </mat-paginator>
+    </div>
+</div>

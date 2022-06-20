@@ -1,0 +1,12 @@
+<mat-toolbar class="mat-elevation-z8 mb-4">
+    <span>
+        {{projectName$ | async}}
+        <span class="headerSmall">Kanban Board</span>
+    </span>
+    <span class="toolbar-spacer"></span>
+    <div>
+        <button mat-icon-button (click)="addSwimLane()" [disabled]="!isAdmin">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>

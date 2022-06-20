@@ -1,0 +1,19 @@
+<mat-toolbar class="mat-elevation-z8 mb-4">
+  <span>
+    {{project.name}} Kanban Board
+    <span *ngIf="screenshot"><span class="seperatorColor"> - </span>{{this.ssDate | date: 'MMM dd, yyyy : hh a'}}</span>
+  </span>
+  <span class="toolbar-spacer"></span>
+    <div>
+      <button mat-icon-button (click)="openScreenShot()">          
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-icon-button (click)="screenShot()" [disabled]="screenshot">          
+        <mat-icon>photo_camera</mat-icon>
+      </button>
+      <button mat-icon-button (click)="addColumn()" [disabled]="screenshot">          
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+  

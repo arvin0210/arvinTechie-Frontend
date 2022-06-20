@@ -1,0 +1,46 @@
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  //display: flex;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.highlight {
+  background: rgb(242, 237, 98, 70%);
+}
+
+.toolbar {
+  background-color: #4b0082;
+  border-radius: 5px;
+  color: white;
+}
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.button-padding {
+  padding-right: 30%;
+}

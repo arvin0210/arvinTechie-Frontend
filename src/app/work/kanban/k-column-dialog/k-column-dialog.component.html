@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+
+        <mat-toolbar class="toolbar">
+            <mat-card-title>{{action}}</mat-card-title>
+            <span class="toolbar-spacer"></span>
+            <mat-icon (click)="onNoClick()">cancel</mat-icon>
+        </mat-toolbar>
+
+        <div class="mt-3"></div>
+        <form [formGroup]="swimLaneForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Column Name</mat-label>
+                        <mat-select formControlName="userId">
+                            <mat-option [value]=0>Generic Column</mat-option>
+                            <mat-option *ngFor="let item of teamMates" [value]=item.id>{{item.firstName}}, {{item.lastName}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field *ngIf="this.swimLaneForm.get('userId')?.value === 0">
+                        <mat-label>Generic Column Name</mat-label>
+                        <input matInput formControlName="userName">
+                        <mat-error ngx-mat-errors></mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Role Name</mat-label>
+                        <input matInput formControlName="roleName">
+                        <mat-error ngx-mat-errors></mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Color Selection</mat-label>
+                        <mat-select formControlName="color">
+                            <mat-option value="#ffffff" style="background-color: #ffffff;">NONE</mat-option>
+                            <mat-option value="#e92c64" style="background-color: #e92c64;">RED</mat-option>
+                            <mat-option value="#009886" style="background-color: #009886;">GREEN</mat-option>
+                            <mat-option value="#719d3c" style="background-color: #719d3c;">LIME</mat-option>
+                            <mat-option value="#208eed" style="background-color: #208eed;">BLUE</mat-option>
+                            <mat-option value="#144973" style="background-color: #144973;">DARK BLUE</mat-option>
+                            <mat-option value="#aa33aa" style="background-color: #aa33aa;">PURPLE</mat-option>
+                            <mat-option value="#b36619" style="background-color: #b36619;">BROWN</mat-option>
+                            <mat-option value="#808080" style="background-color: #808080;">GREY</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field>
+                        <mat-label>Order Sequence</mat-label>
+                        <input matInput formControlName="sortIndex">
+                        <mat-error ngx-mat-errors></mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <div class="mt-4">
+                        <button class="col-12" mat-raised-button color="accent">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>

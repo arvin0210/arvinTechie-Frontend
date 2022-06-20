@@ -1,0 +1,8 @@
+<button 
+    [ngClass]="!this.item.active ? 'mat-button' : 'mat-raised-button mat-primary'" 
+    (click)="onClicked(this.item.id)">    
+    <small>{{this.item.date | date: 'MMM dd, yyyy : hh a'}}</small>    
+</button>
+<button mat-icon-button (click)="onDelete(this.item)" [disabled]="!this.item.canDelete">
+    <mat-icon class="screen-icon">delete</mat-icon>
+</button>

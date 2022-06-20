@@ -1,0 +1,67 @@
+<h3 mat-dialog-title>{{ this.action }}</h3>
+
+<form [formGroup]="_newColumnForm">
+    <div mat-dialog-content>
+        <div class="form-group mb-3">
+            <div class="row">
+                <div class="col">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Column Title</mat-label>
+                        <input matInput formControlName="columnTitle">
+                        <mat-error ngx-mat-errors></mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Column Role</mat-label>
+                        <input matInput formControlName="columnRoleName">
+                        <mat-error ngx-mat-errors></mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>Column Index</mat-label>
+                        <input matInput formControlName="columnIndex">
+
+                        <mat-error ngx-mat-errors>
+                            <span *ngxMatErrorDef="let error; for: 'pattern'">
+                                Only digits are allowed
+                            </span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button cdkFocusInitial color="primary" (click)="onSubmit()">Confirm</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+</form>
+
+<div class="container">
+    <div class="row">
+        <div class="mt-4">
+            <h5>Column Index details</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Index</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let column of _boardService.getBoard$() | async">
+                        <td>{{column.userName}}</td>
+                        <td>{{column.sortIndex}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p><small>hint: an index of '9999' will always be the last column in list.</small></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<app-k-header [projectId]="this.projectId$" [projectName]="this.projectName$" [dialogWidth]="this.dialogWidth"></app-k-header>
+
+<div cdkDropListGroup fxLayout="row wrap" fxLayoutGap="15px grid">
+    <div fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" class="mb-5" *ngFor="let swimlane of dataService.getBoard$() | async">
+
+        <mat-card class="mat-elevation-z4 mb-2">
+            <h3><strong>{{swimlane.userName}}</strong></h3>
+            <p style="line-height: 0%;"><small>{{swimlane.roleName}}</small></p>
+        </mat-card>
+
+        <div class="card mat-elevation-z4">
+            <div class="row">
+                <div class="col-4">
+                    <button mat-button (click)="onAddCard(swimlane)" [disabled]="activeID != swimlane.userId">
+                        <mat-icon style="font-size: 20px;">add</mat-icon>
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button mat-button (click)="onEditSwimLane(swimlane)" [disabled]="!isAdmin && activeID != swimlane.userId">
+                        <mat-icon style="font-size: 20px;">edit</mat-icon>
+                    </button>
+                </div>
+                <div class="col-4">
+                    <button mat-button (click)="onDeleteSwimLane(swimlane)" [disabled]="!isAdmin">
+                        <mat-icon style="font-size: 20px;">delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div cdkDropList [cdkDropListData]="swimlane.cards" class="example-list mt-3" (cdkDropListDropped)="drop($event)" id={{swimlane.id}}>
+            <div cdkDrag class="example-box" 
+            [ngClass]="{'NoneBK': swimlane.color === '#ffffff', 'RestBK': swimlane.color != '#ffffff'}" 
+            [ngStyle]="{background: swimlane.color}" 
+            *ngFor="let card of swimlane.cards">
+
+                <app-k-card [card]="card"
+                    (emitText)="onAddComment($event)"
+                    (emitDeleteCard)="onDeleteCard(card.id, card.text)"
+                    (emitEditCard)="onEditCard(card, swimlane)"
+                    (emitCardSchedule)="onCardScheduleChange(swimlane.id, card.id, card.progress, card.text)">
+                    <div *ngFor="let com of card?.comments">
+                        <app-k-card-comment [comment]="com" [swimLaneColor]="swimlane.color"
+                            (emitComment)="onDeleteComment(com, swimlane.id, card.id)">
+                        </app-k-card-comment>
+                    </div>
+                </app-k-card>
+
+            </div>
+        </div>
+
+    </div>
+</div>

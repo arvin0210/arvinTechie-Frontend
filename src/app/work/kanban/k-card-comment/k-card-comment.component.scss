@@ -1,0 +1,44 @@
+.comment-item {
+  border: 1px solid rgba(223, 223, 223, 0.37);
+}
+
+.icon-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-left: 10px;
+}
+
+.comment-Name {
+  //color: rgba(223, 223, 223, 0.45);
+  font-size: small;
+}
+
+.comment-Date {
+  //color: rgba(223, 223, 223, 0.35);
+  font-size: small;
+  line-height: 0%;
+}
+
+.NoneBK {
+  color: rgb(55, 55, 55, 0.87);
+  border: solid 1px rgb(195, 195, 195);
+
+  p.comment-Name {
+    color: rgb(55, 55, 55, 0.50);
+  }
+  p.comment-Date {
+    color: rgb(55, 55, 55, 0.35);
+  }
+}
+.RestBK {
+  color: rgba(236, 236, 236, 0.87);
+  //border: solid 1px #ccc;
+
+  p.comment-Name {
+    color: rgba(236, 236, 236, 0.47);
+  }
+  p.comment-Date {
+    color: rgba(236, 236, 236, 0.35);
+  }
+}

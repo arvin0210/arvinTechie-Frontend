@@ -1,0 +1,87 @@
+mat-toolbar {
+    background: #004a9f;
+    color: white;
+}
+
+mat-sidenav {
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background: #002b5c;
+    background: linear-gradient(180deg, #002b5c 0, #002bc5 100%);
+    color: white;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+
+.AuthON {
+    // background: #900073;
+    background: #5c0039;
+    background: linear-gradient(180deg, #5c0039 0, #c50083 100%);
+}
+
+.AuthOFF {
+    // background: #004a9f;
+    background: #002b5c;
+    background: linear-gradient(180deg, #002b5c 0, #002bc5 100%);
+}
+
+.content {
+    //height: calc(100vh - 98px);
+    margin: 16px;
+    margin-left: 32px;
+    //display: block;
+    //justify-content: flex;
+    //align-items: center;
+    //border-radius: 10px;
+
+    @media (max-width: 800px) {
+        margin-left: 16px;
+    }
+}
+
+mat-sidenav-container {
+    height: calc(100vh - 65px);
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 0.9rem;
+
+    mat-icon {
+        margin-right: 16px;
+    }
+}
+
+.icon-display {
+    transform: scale(2);
+ }
+
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.name {
+    margin: 0;
+    margin-top: 8px;
+    font-weight: normal;
+}
+
+.designation {
+    margin-top: 2px;
+    font-size: 0.7rem;
+    color: lightgrey;
+}
+
+mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+}

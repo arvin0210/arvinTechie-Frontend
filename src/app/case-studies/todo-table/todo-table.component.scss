@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.toolbar{
+  background-color:  #4B0082;
+  border-radius: 5px;
+  color: white;
+
+}
+
+.toolbar-spacer{
+  flex: 1 1 auto;
+}
+
+.thumb-Up {
+  color:rgb(3, 177, 3);
+  margin-top: 0.3em;;
+}
+
+.highlight {
+  background: rgb(242, 237, 98);
+}
+

@@ -1,0 +1,9 @@
+<div class="shadow-sm p-3 mb-2 comment-item position-relative" [ngClass]="{'NoneBK': swimLaneColor === '#ffffff', 'RestBK': swimLaneColor != '#ffffff'}">
+  {{comment.text}}
+  <button mat-icon-button class="icon-delete" (click)="onCommentEmit(comment)">
+    <mat-icon *ngIf="comment.canDelete" style="font-size: 18px;" class="mt-2">delete</mat-icon>
+  </button>
+
+  <p class="comment-Name">{{ comment.userName }}</p>
+  <p class="comment-Date">{{ comment.commentDate | date:'MMM d, y : h:mm a' }}</p>
+</div>

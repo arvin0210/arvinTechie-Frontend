@@ -1,0 +1,68 @@
+<app-kanban-header [screenshot]="!this.kanbanStatus" [projectId]="this.projectId" [ssDate]="this.screenDate" (emitDetailsClicked)="detailsClicked($event)"></app-kanban-header>
+
+<div class="card mb-3" *ngIf="ssOpen">
+    <div class="card-body">
+        <button mat-stroked-button class="float-end" (click)="resetScreenshot()">clear</button>
+        <h3 class="card-title fw-bold">Screenshots</h3>
+
+        <div fxLayout="row wrap" fxLayoutGap="15px grid">
+            <div fxFlex="20%" fxFlex.xs="50%" fxFlex.sm="33%" *ngFor="let screen of _boardService.getScreen$() | async">
+                <app-screenshot-item [item]="screen" (emitScreenshot)="clickScreenShot($event)"></app-screenshot-item>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div cdkDropListGroup fxLayout="row wrap" fxLayoutGap="15px grid">
+
+
+    <div fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="50%" class="mb-5"
+        *ngFor="let column of _boardService.getBoard$() | async">
+
+        <mat-card class="mat-elevation-z4 mb-2">
+            <h3><strong>{{column.userName}}</strong></h3>
+            <p style="line-height: 0%;"><small>{{column.roleName}}</small></p>
+        </mat-card>
+        <div class="row" *ngIf="this.kanbanStatus">
+            <div class="col-4">
+                <button mat-button (click)="onAddCard(column.userName, column.id)">
+                    <mat-icon style="font-size: 20px;">add</mat-icon>
+                </button>
+            </div>
+            <div class="col-4">
+                <button mat-button (click)="onEditColumn(column)">
+                    <mat-icon style="font-size: 20px;">edit</mat-icon>
+                </button>
+            </div>
+            <div class="col-4">
+                <button mat-button (click)="onDeleteColumn(column.id, column.userName)">
+                    <mat-icon style="font-size: 20px;">delete</mat-icon>
+                </button>
+            </div>
+        </div>
+
+        <app-color-panel *ngIf="this.kanbanStatus" (emitColor)="onColorChange($event, column.id)"></app-color-panel>
+
+        <div cdkDropList [cdkDropListData]="column.cards" class="example-list mt-2" (cdkDropListDropped)="drop($event)"
+            [cdkDropListDisabled]="!this.kanbanStatus">
+            <div cdkDrag class="example-box" [ngStyle]="{background: column.color}" *ngFor="let item of column.cards">
+                <app-board-item [item]="item" [screenshot]="!this.kanbanStatus"
+                    (emitText)="onAddComment($event, column.id)"
+                    (emitDeleteCard)="onDeleteCard(item.id, item.text, column.id)"
+                    (emitCardSchedule)="onCardScheduleChange(column.id, item.id, item.progress)">
+                    <div *ngFor="let comment of item.comments">
+                        <app-comment-item [comment]="comment" [screenshot]="!this.kanbanStatus"
+                            (emitComment)="onDeleteComment(comment, column.id, item.id)">
+                        </app-comment-item>
+                    </div>
+                </app-board-item>
+            </div>
+        </div>
+
+
+    </div><!-- list of Columns -->
+
+
+</div><!-- cdkDropListGroup -->
